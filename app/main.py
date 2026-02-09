@@ -146,11 +146,10 @@ def _curvature_statistics(shape: TopoDS_Shape) -> Dict[str, float]:
         explorer.Next()
     if not curvatures:
         return {"min": 0.0, "max": 0.0, "avg": 0.0}
-    scale = 1 / INCH_PER_MM
     return {
-        "min": min(curvatures) * scale,
-        "max": max(curvatures) * scale,
-        "avg": (sum(curvatures) / len(curvatures)) * scale,
+        "min": min(curvatures),
+        "max": max(curvatures),
+        "avg": sum(curvatures) / len(curvatures),
     }
 
 
@@ -239,7 +238,7 @@ def _feature_size_accessibility(shape: TopoDS_Shape) -> Dict[str, float]:
     max_curv = stats["max"]
     if max_curv <= 0:
         return {">0.5in": 1.0, "0.25-0.5in": 0.0, "<0.25in": 0.0}
-    min_radius_in = 1 / max_curv
+    min_radius_in = (1 / max_curv) * INCH_PER_MM
     if min_radius_in >= 0.5:
         return {">0.5in": 1.0, "0.25-0.5in": 0.0, "<0.25in": 0.0}
     if min_radius_in >= 0.25:
@@ -396,7 +395,7 @@ async def analyze_step(file: UploadFile = File(...)) -> JSONResponse:
             "curvature_statistics",
             "Curvature Statistics",
             "Max/average/min curvature sampled at face midpoints",
-            "1/in",
+            "1/mm",
             "Geometry",
             "BRepLProp_SLProps",
             ["surface finish", "classification"],
