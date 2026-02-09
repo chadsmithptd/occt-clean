@@ -6,8 +6,10 @@ from typing import Dict, Iterable, List, Optional, Tuple
 
 import numpy as np
 from OCC.Core.Bnd import Bnd_Box
+from OCC.Core.BRep import BRep_Tool
 from OCC.Core.BRepBndLib import brepbndlib_Add
 from OCC.Core.BRepClass3d import BRepClass3d_SolidClassifier
+from OCC.Core.BRepExtrema import BRepExtrema_DistShapeShape
 from OCC.Core.BRepGProp import brepgprop_SurfaceProperties, brepgprop_VolumeProperties
 from OCC.Core.BRepTools import UVBounds
 from OCC.Core.GProp import GProp_GProps
@@ -21,7 +23,7 @@ from OCC.Core.GeomAbs import (
 )
 from OCC.Core.GeomAdaptor import GeomAdaptor_Surface
 from OCC.Core.GeomLProp import GeomLProp_SLProps
-from OCC.Core.gp import gp_Dir, gp_Pnt, gp_Pln
+from OCC.Core.gp import gp_Dir, gp_Pnt, gp_Pln, gp_Vec
 from OCC.Core.ShapeAnalysis import ShapeAnalysis_Surface
 from OCC.Core.ShapeFix import ShapeFix_Shape
 from OCC.Core.ShapeUpgrade import ShapeUpgrade_UnifySameDomain

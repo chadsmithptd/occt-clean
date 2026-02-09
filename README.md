@@ -54,7 +54,7 @@ Example response structure:
 ```
 
 ## Render.com deployment
-This repo includes `render.yaml` and `requirements.txt`. Connect the GitHub repo to Render and deploy the web service. The OCCT Python bindings are installed from the upstream GitHub repo (https://github.com/tpaviot/pythonocc-core.git) as requested.
+This repo includes `render.yaml` and `requirements.txt`. Connect the GitHub repo to Render and deploy the web service.
 
 ```
 startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
